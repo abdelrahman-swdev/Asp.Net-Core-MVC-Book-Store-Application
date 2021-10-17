@@ -1,0 +1,93 @@
+﻿@model BookModel
+@inject Book_Store_App.Interfaces.ILanguageRepository _langRepo
+@{
+    ViewData["Title"] = "Add New Book";
+}
+
+<div class="container">
+    <div class="row">
+        
+        <div class="col-md-8 mt-4">
+            <div class="separator">
+                <h1 class="display-5">Add New Book</h1>
+                <hr />
+            </div>
+        </div>
+        <div class="col-md-8">
+            <form 
+                  method="post"
+                  asp-action="AddNewBook"
+                  asp-controller="Book"
+                  enctype="multipart/form-data">
+                <div class="form-floating mb-2 mt-2">
+                    <input asp-for="Title" class="form-control" placeholder="Book Title" />
+                    <label class="custom-label" asp-for="Title">Title</label>
+                    <span asp-validation-for="Title" style="color: #ff008d;"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col form-floating mb-2 mt-2">
+                        <input asp-for="Category" class="form-control" placeholder="Category" />
+                        <label asp-for="Category"></label>
+                        <span asp-validation-for="Category" style="color: #ff008d;"></span>
+                    </div>
+                    <div class="col form-floating mb-2 mt-2">
+                        <input asp-for="TotalPages" class="form-control" placeholder="Total Pages" />
+                        <label asp-for="TotalPages"></label>
+                        <span asp-validation-for="TotalPages" style="color: #ff008d;"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-floating mb-2 mt-2 col">
+                        <input asp-for="Author" class="form-control" placeholder="Author" />
+                        <label asp-for="Author"></label>
+                        <span asp-validation-for="Author" style="color: #ff008d;"></span>
+                    </div>
+                    <div class="custom-select mb-2 mt-2 col">
+                        <label asp-for="LanguageId"></label>
+                        <select asp-for="LanguageId" class="form-control" 
+                                asp-items="(await _langRepo.GetAllLanguagesAsync())
+                                    .Select(l => new SelectListItem() {Text = l.LanguageName, Value = l.Id.ToString() })">
+                            <option value="">..........</option>
+                        </select>
+                        <span asp-validation-for="LanguageId" style="color: #ff008d;"></span>
+                    </div>
+                </div>
+
+                <div class="form-floating mt-2 mb-2">
+                    <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+                    <label class="custom-label" asp-for="Description">Description</label>
+                    <span asp-validation-for="Description" style="color: #ff008d;"></span>
+                </div>
+
+                <div class="mb-2 mt-4">
+                    <label asp-for="CoverPhoto" class="form-label ps-2"></label>
+                    <input class="form-control" asp-for="CoverPhoto" style="background-color: var(--f6-color) !important;">
+                    <span asp-validation-for="CoverPhoto" style="color: #ff008d;"></span>
+                </div>
+
+                <div class="mb-2 mt-4">
+                    <label asp-for="GalleryFiles" class="form-label ps-2"></label>
+                    <input class="form-control" asp-for="GalleryFiles" style="background-color: var(--f6-color) !important;">
+                    <span asp-validation-for="GalleryFiles" style="color: #ff008d;"></span>
+                </div>
+
+                <div class="mb-2 mt-4">
+                    <label id="BookPdfLabel" asp-for="BookPdf" class="form-label ps-2"></label>
+                    <input class="form-control" asp-for="BookPdf" style="background-color: var(--f6-color) !important;">
+                    <span asp-validation-for="BookPdf" style="color: #ff008d;"></span>
+                </div>
+
+                <div class="buttons mb-2 mt-4">
+                    <button type="submit" class="btn btn-outline-dark">Save</button>
+                    <a asp-controller="Book" asp-action="getallbooks" class="btn btn-outline-secondary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{ 
+    <script>
+    </script>
+}

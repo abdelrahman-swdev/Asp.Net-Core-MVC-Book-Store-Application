@@ -1,0 +1,27 @@
+﻿@model BookModel
+
+<div class="book-card">
+    <img src="@(String.IsNullOrEmpty(Model.CoverPhotoUrl) ? "/images/no-image-available.jpg" : "/uploads/book-cover/" + Model.CoverPhotoUrl)" alt="" />
+    <div class="book-card-text">
+        <h4>@(String.IsNullOrEmpty(Model.Title) ? "Unknown" : Model.Title)</h4>
+
+        @if (String.IsNullOrEmpty(Model.Description))
+        {
+        <p>Unknown</p>
+        }
+        else if (Model.Description.Length > 30)
+        {
+            <p>@(Model.Description.Substring(0, 26) + "..")</p>
+        }
+        else
+        {
+            <p>@Model.Description</p>
+        }
+        <div class="book-footer">
+            <span>Last Updated: @(Model.UpdatedOn.HasValue ? Model.UpdatedOn.Value.ToString("MM/yyyy") : "Unknown")</span>
+            <a asp-controller="Book" asp-action="GetBookById" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+                View <i class="fas fa-eye"></i>
+            </a>
+        </div>
+        </div>
+</div>

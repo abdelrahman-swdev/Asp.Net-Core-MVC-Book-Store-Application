@@ -1,0 +1,171 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap");
+
+:root {
+    --extra-light-font: 200;
+    --light-font: 300;
+    --regular-font: 400;
+    --medium-font: 500;
+    --semi-bold-font: 600;
+    --bold-font: 700;
+    --extra-bold-font: 800;
+    --trans: all 0.3s ease-in-out;
+    --f6-color: #f6f6f6;
+    --dark-color: #222;
+    --main-color: #10cab7;
+    --second-color: #777;
+    --sepertor-pad: 60px;
+    --gap-grid: 3rem;
+}
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--f6-color) !important;
+    font-family: "Work Sans", sans-serif !important;
+}
+
+/* Header */
+.logo{
+    width:35px;
+    height:35px;
+}
+
+
+@media(max-width:992px){
+    .navbar-collapse {
+        position: absolute;
+        width: 100%;
+        height: calc(100vh - 93px);
+        left: 0;
+        top: 93px;
+        background-color: rgb(33, 37, 41);
+        clip-path: circle(0% at 50% 0%);
+        z-index:1000;
+    }
+    .navbar-collapse:not(.show) {
+        transition: all 0.3s ease-in-out;
+    }
+    .navbar-collapse.show {
+        clip-path: circle(100% at 50% 0%);
+        transition: all 0.3s ease-in-out;
+    }
+}
+/* End Header */
+/* Index */
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+/* End Index */
+
+/* Get all Books*/
+.card-footer{
+    display:flex !important;
+    justify-content:space-between;
+}
+/* End Get all Books*/
+
+/* start Separator */
+.separator{
+    text-align:center;
+    margin-bottom:50px !important;
+}
+.separator hr{
+    border: 2px solid #999;
+    margin:0;
+}
+.separator h1 {
+    margin: 0;
+}
+/* end separator*/
+
+
+/* start customizing inputs field */
+.form-floating input, .form-floating textarea {
+    background-color: var(--f6-color) !important;
+    border: none;
+    border-bottom: 2px solid #444;
+}
+
+.form-floating input:focus, .form-floating textarea:focus {
+    border: none;
+    box-shadow: none;
+    background-color: var(--f6-color) !important;
+    border-bottom: 2px solid #444;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+}
+
+.custom-label{
+    padding: 1rem 0 !important;
+}
+
+.validation_summary{
+    color:#ff008d;
+}
+.validation_summary ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.custom-select select {
+    background-color: var(--f6-color) !important;
+    border: none;
+    border-bottom: 2px solid #444;
+    padding: 0.25rem 0.75rem !important;
+}
+
+.custom-select select:focus {
+    border: none;
+    box-shadow: none;
+    background-color: var(--f6-color) !important;
+    border-bottom: 2px solid #444;
+}
+/* start customizing inputs field */
+
+/* end custom anchor tag */
+
+.custom-a {
+    color: gray;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-a:hover {
+    color: #fff;
+}
+/* start custom anchor tag */
+
+/* start form-group-icon */
+.form-group-icon{
+    position:relative;
+    color:var(--second-color);
+}
+.form-group-icon .input-icon{
+    position:absolute;
+    top:12px;
+    left:14px;
+    z-index:1;
+}
+.form-group-icon input{
+    padding-left:35px;
+    border-radius:15px !important;
+}
+/* end form group icon */

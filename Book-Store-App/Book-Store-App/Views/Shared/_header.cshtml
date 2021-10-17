@@ -1,0 +1,31 @@
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration _config
+@{ 
+    var appName = _config.GetSection("AppName").Value;
+}
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
+        <div class="container">
+            
+            <a class="navbar-brand text-warning fw-bold" href="#"> @appName <img asp-append-version="true" class="logo" src="~/images/logo.svg" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse text-center navbar-collapse" id="navbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" asp-controller="Book" asp-action="getallbooks">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" asp-controller="Book" asp-action="addnewbook">Add Book</a>
+                    </li>
+                </ul>
+
+                <partial name="_LoginInfo" />
+
+            </div>
+        </div>
+    </nav>
+</header>

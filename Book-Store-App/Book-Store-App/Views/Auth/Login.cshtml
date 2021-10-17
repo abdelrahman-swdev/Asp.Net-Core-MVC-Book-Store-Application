@@ -1,0 +1,82 @@
+﻿@model LoginModel
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="separator">
+                <h1 class="display-5">Login</h1>
+                <hr />
+            </div>
+
+            @if (!string.IsNullOrEmpty(ViewBag.verifiyMsg))
+            {
+                <div class="alert alert-info" role="alert">
+                    @ViewBag.verifiyMsg
+                </div>
+            }
+
+        <form method="post">
+            <div class="mt-4">
+                <div class="form-group-icon">
+                    <i class="input-icon fas fa-envelope"></i>
+                    <input class="form-control" asp-for="Email" placeholder="Email" />
+                </div>
+                <span asp-validation-for="Email" style="color: #dc3545; "></span>
+            </div>
+
+            <div class="mt-4">
+                <div class="form-group-icon">
+                    <i class="input-icon fas fa-lock"></i>
+                    <input class="form-control" asp-for="Password" placeholder="Password" />
+                </div>
+                <span asp-validation-for="Password" style="color: #dc3545; "></span>
+            </div>
+
+            <div class="form-check mt-4">
+                <input class="form-check-input" asp-for="RememberMe">
+                <label class="form-check-label">
+                    Remember me
+                </label>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;" class="mt-4 mb-4">
+                <button class="btn btn-success">Login</button>
+                <a class="btn btn-outline-dark" asp-controller="Book" asp-action="getallbooks">Back</a>
+            </div>
+            <a asp-controller="Auth" asp-action="ForgotPassword">Forgot Password</a>
+        </form>
+            <div class="mt-4 text-danger" asp-validation-summary="ModelOnly"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="separator">
+                <h1 class="display-5">Or login with</h1>
+                <hr />
+            </div>
+            @{ 
+                if(Model.ExternalLogins.Count == 0)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        No external logins configured
+                    </div>
+                }
+                else
+                {
+                    <form class="text-center" method="post" asp-action="ExternalLogin" asp-controller="Auth" asp-route-returnUrl="@Model.ReturnUrl">
+                        <div>
+                            @foreach(var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" 
+                                        class="btn btn-primary" 
+                                        name="provider" 
+                                        value="@provider.Name" 
+                                        title="Login using your @provider.DisplayName account">
+                                    @provider.DisplayName
+                                </button>
+                            }
+                        </div>
+                    </form>
+                }
+            }
+        </div>
+    </div>
+</div>

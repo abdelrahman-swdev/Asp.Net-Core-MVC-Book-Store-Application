@@ -1,0 +1,43 @@
+﻿@using Book_Store_App.Data
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> _userManager
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    
+    var externalUser = false;
+
+    
+    var user = await _userManager.FindByNameAsync(User.Identity.Name);
+    if (string.IsNullOrEmpty(user.PasswordHash))
+    {
+        externalUser = true;
+    }
+    
+    
+    <div class="btn-group">
+        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            @(User.FindFirst("FirstName").Value + " " + @User.FindFirst("LastName").Value)
+        </button>
+        <ul class="dropdown-menu bg-dark">
+            @if (externalUser == false)
+            {
+                <li><a class="nav-link text-primary" asp-controller="Auth" asp-action="ChangePassword">Change Password</a></li>
+            }
+            <li><a class="nav-link text-danger" asp-controller="Auth" asp-action="Logout">Logout</a></li>
+        </ul>
+    </div>
+}
+else
+{
+    <ul class="navbar-nav">
+        <li class="nav-item right">
+            <a class="nav-link" asp-controller="Auth" asp-action="SignUp">Register</a>
+        </li>
+        <li class="nav-item right">
+            <a class="nav-link" asp-controller="Auth" asp-action="Login"
+               asp-route-returnUrl="@Context.Request.Path">Login</a>
+        </li>
+    </ul>
+}

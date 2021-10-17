@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = $"Book Details {Model.Title}";
+}
+@model BookModel
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="separator">
+            <h1 class="display-5">Book Details</h1>
+            <hr />
+        </div>
+        <div class="col-md-6">
+            <div id="carouselExampleIndicators" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    @if (Model.Gallery.Count > 0)
+                    {
+                        for (int i = 0; i < Model.Gallery.Count; i++)
+                        {
+                            <button type="button"
+                                    data-bs-target="#carouselExampleIndicators"
+                                    data-bs-slide-to="@i" class=" @(i == 0 ? "active bg-secondary" : "bg-secondary") "
+                                    aria-current="true"
+                                    aria-label="Slide @(i+1)">
+                            </button>
+                        }
+                    }
+                </div>
+                <div class="carousel-inner">
+                    @if (Model.Gallery.Count > 0)
+                    {
+                        for (int i = 0; i < Model.Gallery.Count; i++)
+                        {
+                            <div class=" @(i == 0 ? "carousel-item active" : "carousel-item") ">
+                                <img src="/uploads/gallery/@Model.Gallery[i].Url" class="d-block w-100" alt="@Model.Gallery[i].Name">
+                            </div>
+                        }
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-secondary" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card" style="max-width: 540px; border:0 !important; background-color:#ddd !important;">
+                <div class="row g-0">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.Title</h5>
+                        <h6 class="text-primary">By: @Model.Author</h6>
+                        <p class="card-text">@Model.Description.</p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                Publication date:
+                                @(Model.PublicationDate.HasValue ? Model.PublicationDate.Value.ToString("MMMM yyyy") : "Unknown")
+                            </small>
+                        </p>
+                    </div>
+                    <div class="row g-0">
+                        <ul class="list-group">
+                            <li class="list-group-item" style="background-color:#ddd !important;">Category: @Model.Category</li>
+                            <li class="list-group-item" style="background-color:#ddd !important;">Pages: @Model.TotalPages</li>
+                            <li class="list-group-item" style="background-color:#ddd !important;">Language: @Model.LangName</li>
+                        </ul>
+                        <a class="btn btn-secondary mt-2" target="_blank" href="/uploads/books-pdf/@Model.BookPdfUrl">Read Now</a>
+                        <a class="btn btn-outline-dark mt-2" asp-action="getallbooks">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-5">
+        <figure class="text-center bg-warning">
+            <blockquote class="blockquote" style="margin-top:1rem;">
+                <p>So many books, so little time.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                Frank Zappa
+            </figcaption>
+        </figure>
+        <div class="separator mt-5">
+            <h1 class="display-5">See Similar Books</h1>
+            <hr />
+        </div>
+        <div class="book-content">
+            @for (var i = 0; i < 5; i++)
+            {
+                <partial name="_bookCard" model="@Model"/>
+            }
+        </div>
+    </div>
+</div>

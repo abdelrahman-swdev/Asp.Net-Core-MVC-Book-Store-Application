@@ -1,0 +1,13 @@
+﻿<<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 col">
+            <div class="alert alert-danger">
+                some thing went wrong
+                @if(!string.IsNullOrEmpty(ViewBag.ErrorTitle))
+                {
+                    @ViewBag.ErrorTitle
+                }
+            </div>
+        </div>
+    </div>
+</div>

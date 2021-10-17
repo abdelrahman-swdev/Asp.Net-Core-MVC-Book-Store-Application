@@ -1,0 +1,34 @@
+﻿.footer-info {
+    width: 100%;
+}
+
+.owner {
+    text-align: center;
+    padding: 10px;
+}
+
+    
+
+.icons-section{
+    text-align: center;
+    padding: 10px;
+}
+
+.icons-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+.icons-list li{
+    transition: all 0.5s ease-in-out;
+}
+.icons-list li:hover {
+    transform: translateY(-10px);
+}
+
+.icon {
+    margin-right: 15px;
+}

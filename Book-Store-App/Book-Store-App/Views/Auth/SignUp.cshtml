@@ -1,0 +1,64 @@
+﻿@model SignUpModel
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 col">
+            <div class="separator">
+                <h1 class="display-5">Create New Account</h1>
+                <hr />
+            </div>
+            @if (!String.IsNullOrEmpty(ViewBag.signInFaild))
+            {
+                <div class="alert alert-info">
+                    @ViewBag.signInFaild
+                </div>
+            }
+            <form method="post" asp-controller="Auth" asp-action="SignUp">
+                <div class="row mt-4">
+                    <div class="col-md-6 mt-4">
+                        <div class="form-group-icon">
+                            <i class="input-icon fas fa-user-circle"></i>
+                            <input class="form-control" asp-for="FirstName" placeholder="First Name" />
+                        </div>
+                        <span asp-validation-for="FirstName" style="color: #dc3545; "></span>
+                    </div>
+                    <div class="col-md-6 mt-4">
+                        <div class="form-group-icon">
+                            <i class="input-icon fas fa-user-circle"></i>
+                            <input class="form-control" asp-for="LastName" placeholder="Last Name" />
+                        </div>
+                        <span asp-validation-for="LastName" style="color: #dc3545; "></span>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="form-group-icon">
+                        <i class="input-icon fas fa-envelope"></i>
+                        <input class="form-control" asp-for="Email" placeholder="Email" />
+                    </div>
+                    <span asp-validation-for="Email" style="color: #dc3545; "></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mt-4">
+                        <div class="form-group-icon">
+                            <i class="input-icon fas fa-lock"></i>
+                            <input class="form-control" asp-for="Password" placeholder="Password" />
+                        </div>
+                        <span asp-validation-for="Password" style="color: #dc3545; "></span>
+                    </div>
+                    <div class="col-md-6 mt-4">
+                        <div class="form-group-icon">
+                            <i class="input-icon fas fa-lock"></i>
+                            <input class="form-control" asp-for="ConfirmPassword" placeholder="Confirm Password" />
+                        </div>
+                        <span asp-validation-for="ConfirmPassword" style="color: #dc3545; "></span>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;" class="mt-4">
+                    <button class="btn btn-success">Sign Up</button>
+                    <a class="btn btn-outline-dark" asp-controller="Book" asp-action="getallbooks">Back</a>
+                </div>
+            </form>
+            <div class="mt-4 text-danger" asp-validation-summary="ModelOnly"></div>
+        </div>
+    </div>
+</div>

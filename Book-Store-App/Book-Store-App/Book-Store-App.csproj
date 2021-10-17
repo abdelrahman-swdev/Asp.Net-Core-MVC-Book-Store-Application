@@ -6,8 +6,34 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Views\" />
+    <Compile Remove="Migrations\20211004185036_init.cs" />
+    <Compile Remove="Migrations\20211004185036_init.Designer.cs" />
+    <Compile Remove="Migrations\20211006201324_add-langauge-table.cs" />
+    <Compile Remove="Migrations\20211006201324_add-langauge-table.Designer.cs" />
+    <Compile Remove="Migrations\20211008202707_add-gallery-table.cs" />
+    <Compile Remove="Migrations\20211008202707_add-gallery-table.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\uploads\gallery\" />
+    <Folder Include="wwwroot\uploads\books-pdf\" />
+    <Folder Include="wwwroot\uploads\book-cover\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.19" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.19" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.19">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
 </Project>
