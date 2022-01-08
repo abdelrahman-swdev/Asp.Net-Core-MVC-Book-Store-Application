@@ -24,9 +24,11 @@ namespace Book_Store_App
             {
                 var roleManagerService = services.GetRequiredService<RoleManager<IdentityRole>>();
                 var userManagerService = services.GetRequiredService<UserManager<ApplicationUser>>();
+                var contextService = services.GetRequiredService<ApplicationDbContext>();
 
                 await SeedRoles.SeedRolesAsync(roleManagerService);
                 await SeedUsers.SeedAdminUserAsync(userManagerService);
+                await SeedLanguages.SeedInitialLanguages(contextService);
 
                 logger.LogInformation("Data Seeded");
                 logger.LogInformation("Application Started");

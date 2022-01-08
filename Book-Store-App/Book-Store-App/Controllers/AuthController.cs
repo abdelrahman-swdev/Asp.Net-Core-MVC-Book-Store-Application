@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using Book_Store_App.Data;
+using Book_Store_App.Enums;
 using Book_Store_App.Interfaces;
 using Book_Store_App.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -46,6 +45,7 @@ namespace Book_Store_App.Controllers
 
                 if(result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
                     return RedirectToAction("Login",new { verifiyMsg = "Account created successfully, check your email for verification link" });
                 }
                 else

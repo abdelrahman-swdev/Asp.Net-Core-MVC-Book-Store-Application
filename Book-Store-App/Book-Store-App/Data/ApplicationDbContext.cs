@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Book_Store_App.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Book_Store_App.Data
