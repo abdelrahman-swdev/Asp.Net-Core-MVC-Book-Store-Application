@@ -10,3 +10,4 @@
 /Book-Store-App/.vs/Book-Store-App
 /Book-Store-App/Book-Store-App/bin/Release/netcoreapp3.1
 /Book-Store-App/Book-Store-App/wwwroot/lib
+appsettings.json
