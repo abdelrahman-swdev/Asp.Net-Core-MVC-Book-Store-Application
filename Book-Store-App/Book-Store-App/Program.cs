@@ -1,20 +1,43 @@
-using Book_Store_App.Services;
+using Book_Store_App.Data;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Book_Store_App
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            using var scope = host.Services.CreateScope();
+            var services = scope.ServiceProvider;
+            var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+            var logger = loggerFactory.CreateLogger("app");
+
+            try
+            {
+                var roleManagerService = services.GetRequiredService<RoleManager<IdentityRole>>();
+                var userManagerService = services.GetRequiredService<UserManager<ApplicationUser>>();
+
+                await SeedRoles.SeedRolesAsync(roleManagerService);
+                await SeedUsers.SeedAdminUserAsync(userManagerService);
+
+                logger.LogInformation("Data Seeded");
+                logger.LogInformation("Application Started");
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex, "Error while seeding data");
+            }
+
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

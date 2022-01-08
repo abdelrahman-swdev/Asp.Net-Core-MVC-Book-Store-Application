@@ -23,8 +23,7 @@ namespace Book_Store_App
         {
             Configuration = configuration;
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
         public void ConfigureServices(IServiceCollection services)
         {
             // add support for controllers and views
@@ -50,7 +49,6 @@ namespace Book_Store_App
             services.AddAuthentication()
             .AddGoogle(options =>
             {
-
                 options.ClientId = "375549076168-hku4enon81v0nhutnd33mmlfs17baqfc.apps.googleusercontent.com";
                 options.ClientSecret = "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";
             });
